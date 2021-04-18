@@ -19,7 +19,7 @@ import okhttp3.Headers;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String ALL_ANIME_URL= "https://kitsu.io/api/edge/anime?page[limit]=5&page[offset]=0";
+    public static final String ALL_ANIME_URL= "https://kitsu.io/api/edge/anime?page[limit]=20&page[offset]=0";
     public static final String TAG= "MainActivity";
     List<Anime> animes;
 
@@ -40,10 +40,15 @@ public class MainActivity extends AppCompatActivity {
                     Log.i(TAG, "data: " + data.toString());
                     animes = Anime.fromJsonArray(data);
                     Log.i(TAG, "Animes: " + animes.size());
+                    for(int j = 0; j < animes.size(); j++)
+                    {
+                       Log.i(TAG, "Title: " + animes.get(j).getCanonicalTitle());
+                    }
                 } catch (JSONException e) {
                     Log.e(TAG,"Hit json exception",e);
                 }
             }
+
 
             @Override
             public void onFailure(int i, Headers headers, String s, Throwable throwable) {

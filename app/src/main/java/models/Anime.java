@@ -16,12 +16,14 @@ public class Anime {
     String canonicalTitle;
     String synopsis;
     String iD;
+    JSONObject titles;
 
     public Anime(JSONObject jsonObject) throws JSONException {
        // posterImage = jsonObject.getString("posterImage");
         //originalPoster = jsonObject.getString("original");
-        canonicalTitle = jsonObject.getString("titles.canonicalTitle");
-        synopsis= jsonObject.getString("synopsis");
+        canonicalTitle = jsonObject.getJSONObject("attributes").getString("canonicalTitle");
+
+        //synopsis= jsonObject.getString("synopsis");
         iD= jsonObject.getString("id");
 
     }
